@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    url: ${LOCAL_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      mode: never
+      continue-on-error: false
+      schema-locations: classpath:schema.sql
+      data-locations: classpath:demo_data.sql
+
+  liquibase:
+    enabled: true
+    change-log: classpath:liquibase/db.changelog.yaml
+    default-schema: tasklist
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+security:
+  jwt:
+    secret: ${JWT_SECRET}
+    access: ${JWT_ACCESS_EXPIRATION}
+    refresh: ${JWT_REFRESH_EXPIRATION}
+springdoc:
+  override-with-generic-response: false
